@@ -1,0 +1,37 @@
+구체성
+0, 0, 0, 0
+- 0, 1, 0, 0 : 선택자에 있는 모든 id 속성값
+- 0, 0, 1, 0 : 선택자에 있는 모든 class 속성값, 기타 속성, 가상 클래스
+- 0, 0, 0, 1 : 선택자에 있는 모든 요소, 가상 요소
+- 전체 선택자는 0, 0, 0, 0을 갖는다.
+         조합자는 구체성에 영향을 주지 않는다.
+ex)
+   h1 { ... }  /* 0,0,0,1 */
+   body h1 { ... }  /* 0,0,0,2 */
+   .grape { ... }  /* 0,0,1,0 */
+   *.bright { ... }  /* 0,0,1,0 */
+   p.bright em.dark { ... }  /* 0,0,2,2 */
+   #page { ... }  /* 0,1,0,0 */
+   div#page { ... }  /* 0,1,0,1 */
+
+인라인 스타일
+CSS : p#page{color:red;} /* 0,1,0,1 */
+HTML : <p id="page" style="color: blue">Lorem ipsum dolor sit</p> 1,0,0,0
+ ->파란색이 나옴
+
+!IMPORTANT
+CSS : p#page{ color: red !important}
+HTML : <p id="page" style="color: blue">Lorem ipsum dolor sit</p>
+ ->빨간색
+
+-------------------------------------------------------------------------------------------------
+
+상속
+CSS : h1 {color: gtay;}
+HTML : <h1>Hello, <em>CSS</em></h1>
+em 요소는 부모의 color를 상속받아 회색으로 변할까? 변합니다.
+ - margin, padding, background, borde..과 같은 박스 모델 속성들은 상속되지 않는다. 
+
+상속된 값의 구체성은?
+CSS :  * {color:red;}  /*0,0,0,0*/
+CSS : h1#page {color: gtay;}  /*0,1,0,1*/
